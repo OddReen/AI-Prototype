@@ -1,0 +1,28 @@
+tree("Root")
+	fallback
+		tree "Chase"
+		tree "Find"
+		tree "Search"
+		tree "Patrol"
+
+tree "Chase" // Chase target
+	while InView
+		Chase
+
+tree "Find" // Go to target's last seen location
+	sequence
+		IsAware
+		while not AsArrived
+			while not InView
+				Find
+
+tree "Search" // Search around for the target
+	sequence
+		IsAware
+		while not InView
+			Search
+
+tree "Patrol" // Patrol the area
+	while not InView
+		while not IsAware
+			Patrol
